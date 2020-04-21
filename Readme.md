@@ -42,8 +42,17 @@ Les components Spring sont composés de :
 - Mappage d'objets un à un (One to one object mapping)
 - Souvent un mappage de table de base de données (often one to one database table  mapping)
 
+### Remarques sur la création de l'application
 
-#### Bug fixes server TOMCAT
+1 . Ajout d'une librairie Spring sur la page jsp Registration , pour nous permettre la mise een oeuvre d'un formulaire ==>> voir le tag de début de fichier registration.jsp
+	
+	<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
+
+
+
+#### Bug fixes 
+##### Server TOMCAT
 
 Erreur 404 lors du démarrage TOMCAT
 
@@ -52,3 +61,7 @@ Cliquer sur propriete > General puis cliquer sur le bouton "Switch Location", ce
 Double-cliquer ensuite sur le server puis cocher dans la rubrique Server Locations sur la case > Use Tomcat installation (takes controle of Tomcat installation)
 
 Votre server TOMCAT est maintenant operationnel à l'adresse URl: localhost:8080
+
+##### Java JSP
+
+Deprecié il faut etre en jkava 1.8 pour que cela fonctionne
