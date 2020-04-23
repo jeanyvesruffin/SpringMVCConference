@@ -2,6 +2,8 @@
 	pageEncoding="ISO-8859-1"%>
 
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,16 +12,15 @@
 </head>
 <body>
 	<h1>Registration</h1>
-	<form:form modelAttribute="registration">
+	<form:form modelAttribute="registrationModel">
 		<table>
 			<tr>
-				<td>Name:</td>
+				<td><spring:message code="name"></spring:message></td>
 				<td><form:input path="name" /></td>
 			</tr>
 			<tr>
 				<td colspan="2"><input type="submit" value="Add registration">
 				</td>
-				<td><form:input path="name" /></td>
 			</tr>
 		</table>
 	</form:form>
