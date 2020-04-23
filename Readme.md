@@ -135,13 +135,13 @@ Les controller utilisent les annotations springs suivants:
 
 **@Controller, @GetMapping, @ModelAttribute, @PostMapping**
 
-*Le controlleur interprete et transforme les interactions de l'utilisateur pour les transmettres au model *
+*Le controlleur interprete et transforme les interactions de l'utilisateur pour les transmettres au model*
 
-*Le controlleur accède à la logique métier *
+*Le controlleur accède à la logique métier*
 
-*Le controlleur détermine le type de vue ou de réponse *
+*Le controlleur détermine le type de vue ou de réponse*
 
-*Le controlleur interpréte les exceptions *
+*Le controlleur interpréte les exceptions*
 
 **Les Models**
 
@@ -206,7 +206,7 @@ Votre server TOMCAT est maintenant operationnel à l'adresse URl: localhost:8080
 
 #### ResourcesBundle
 
-**ATTENTION à la signature (orthographe) du bean localeResolver() **
+**ATTENTION à la signature (orthographe) du bean localeResolver()**
 
 	@Bean
 		public LocaleResolver localeResolver() {
