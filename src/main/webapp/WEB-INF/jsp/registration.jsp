@@ -8,10 +8,10 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Registration</title>
+<title><spring:message code="registration"></spring:message></title>
 </head>
 <body>
-	<h1>Registration</h1>
+	<h1><spring:message code="registration"></spring:message></h1>
 	<form:form modelAttribute="registrationModel">
 		<table>
 			<tr>
@@ -19,7 +19,8 @@
 				<td><form:input path="name" /></td>
 			</tr>
 			<tr>
-				<td colspan="2"><input type="submit" value="Add registration">
+			<spring:message code="save.changes" var="submitText"></spring:message>
+				<td colspan="2"><input type="submit" value="${submitText}">
 				</td>
 			</tr>
 		</table>

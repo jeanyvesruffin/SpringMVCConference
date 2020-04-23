@@ -97,7 +97,7 @@ choco install springtoolsuite
 
 Les components Spring sont composés de :
 
-1.Controller **@Controller, @GetMapping, @ModelAttribute, @PostMapping**
+1.Controller 
 
 
 - Traite les requetes et reponses (Handles request/ response)
@@ -105,15 +105,6 @@ Les components Spring sont composés de :
 - Coordonne le dépot avec le service (Coordinate with service and repository)
 - Sont annotés avec @Controller (Annoted with @Controller)
 - Gère les exceptions et affiche le routage (Handles exceptions and view routing)
-
-*Le controlleur interprete et transforme les interactions de l'utilisateur pour les transmettres au model *
-
-*Le controlleur accède à la logique métier *
-
-*Le controlleur détermine le type de vue ou de réponse *
-
-*Le controlleur interpréte les exceptions *
-
 
 
 2.Service
@@ -135,7 +126,59 @@ Les components Spring sont composés de :
 - Mappage d'objets un à un (One to one object mapping)
 - Souvent un mappage de table de base de données (often one to one database table  mapping)
 
-### Remarques sur la création de l'application
+
+## SPRING MVC Pattern ModelViewControler
+
+**Les controlleurs**
+
+Les controller utilisent les annotations springs suivants:
+
+**@Controller, @GetMapping, @ModelAttribute, @PostMapping**
+
+*Le controlleur interprete et transforme les interactions de l'utilisateur pour les transmettres au model *
+
+*Le controlleur accède à la logique métier *
+
+*Le controlleur détermine le type de vue ou de réponse *
+
+*Le controlleur interpréte les exceptions *
+
+**Les Models**
+
+Les models sont de simple POJO et sont utilisés dans les controllers à l'aide de l'annnotation 
+
+**@ModelAttribute**
+
+
+
+## Traduction (internalization)
+
+Pour ajouter l'internationalization (I18) nous utilisons, 2 beans, une instance de LocalResolver dans le fichier de configuration (ici ConferenceConfig) se qui correspondant à la langue local (defaut) et une instance de LocalChangeInterceptor pour lui indiquer que cela est une traduction à l'aide du param: "lang".
+
+Nous surchargeons la méthode addInterceptor de l'interface WebMvcConfigurer pour ajouter un intercepteur au cycle de vie Spring MVC.
+
+Nous indiquerons dans le fichier messages.properties du dossier resources les valeurs de language par defaut, ici le francais, puis dans un autre fichier message_en.properties les traductions en Anglais (utilisation d'un plugin est bien utile).
+
+Enfin, dans notre fichier jsp registration nous ajoutons la librairie:
+
+	<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+
+Puis nous injectons les valeurs.
+
+Entouré d'un tag, exemple <title></title>
+
+	<title><spring:message code="registration"></spring:message></title>
+
+Ou bien dans un tag, par exemple input, dans ce cas nous passerons par une variable ici submitText :
+
+	<spring:message code="save.changes" var="submitText"></spring:message>
+				<td colspan="2"><input type="submit" value="${submitText}">
+
+
+
+
+
+## Remarques sur la création de l'application
 
 1 . Ajout d'une librairie Spring sur la page jsp Registration , pour nous permettre la mise een oeuvre d'un formulaire ==>> voir le tag de début de fichier registration.jsp
 	
@@ -146,19 +189,12 @@ Le pattern View est configuré a l'aide de View Resolver ou bien à travers des 
 
 L'étude de l'aspect View a été pratiqué pour mettre en place I18 et les Interceptors sur les traductions.
 
-Pour ajouter l'internationalization (I18) nous utilisons, 2 beans, une instance de LocalResolver dans le fichier de configuration (ici ConferenceConfig) se qui correspondant à la langue local (defaut) et une instance de LocalChangeInterceptor pour lui indiquer que cela est une traduction à l'aide du param: "lang".
-
-Nous surchargeons la méthode addInterceptor de l'interface WebMvcConfigurer pour ajouter un intercepteur au cycle de vie Spring MVC.
-
-Nous indiquerons dans le fichier messages.properties du dossier resources les valeurs de language par defaut, ici le francais, puis dans un autre fichier message_en.properties les traductions en Anglais.
-
-Enfin, dans notre fichier jsp registration nous ajoutons la librairie:
 
 	
 
 
-#### Bug fixes 
-##### Server TOMCAT
+### Bug fixes 
+#### Server TOMCAT
 
 Erreur 404 lors du démarrage TOMCAT
 
@@ -168,7 +204,7 @@ Double-cliquer ensuite sur le server puis cocher dans la rubrique Server Locatio
 
 Votre server TOMCAT est maintenant operationnel à l'adresse URl: localhost:8080
 
-##### ResourcesBundle
+#### ResourcesBundle
 
 **ATTENTION à la signature (orthographe) du bean localeResolver() **
 
@@ -179,6 +215,6 @@ Votre server TOMCAT est maintenant operationnel à l'adresse URl: localhost:8080
 			return slr;
 		}
 
-##### Java JSP
+#### Java JSP
 
-Deprecié il faut etre en jkava 1.8 pour que cela fonctionne
+Deprecié il faut etre en java 1.8 pour que cela fonctionne
