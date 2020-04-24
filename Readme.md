@@ -93,6 +93,16 @@ choco install springtoolsuite
 
 *En cours d'édition End with an example of getting some data out of the system or using it for a little demo*
 
+
+### Maven Dependency
+
+* spring-boot-starter-web
+* spring-boot-starter-tomcat
+* thymeleaf-spring5
+* spring-boot-starter-test
+* hibernate-validator
+
+
 ## Components
 
 Les components Spring sont composés de :
@@ -178,7 +188,44 @@ Ou bien dans un tag, par exemple input, dans ce cas nous passerons par une varia
 				<td colspan="2"><input type="submit" value="${submitText}">
 
 
+## Validation de la configuration
 
+Se fait à l'aide de la dependance hibernate-validator.
+
+
+Nous devons dans le package controller, dans les parametres passés aux méthodes nécessitant une validation (ex:PostMapping) :
+
+* ajouter @Valid 
+* lier (Binding) le resultat
+* ajouter une condition si erreur du resultat
+
+	if(result.hasErrors())
+
+* Coder un tag form:error
+
+			<form:errors path="*" cssClass="errorblock" element="div"/>
+	
+path="*" permet de voir tous les messages d'erreurs
+
+## Thymeleaf
+
+Thymeleaf est un moteur de template, sous licence Apache 2.0, écrit en Java pouvant générer du XML/XHTML/HTML5. Thymeleaf peut être utilisé dans un environnement web ou non web. Son but principal est d'être utilisé dans un environnement web pour la génération de vue pour les applications web basées sur le modèle MVC.
+
+Pour mettre en place thymeleaf il est nécessaire de créer les beans suivants dans le fichier de configuration:
+
+* @Bean SpringResourceTemplateResolver
+* @Bean SpringTemplateEngine
+* @Bean ViewResolver
+
+**ATTENTION**
+
+Soit nous utilisons Thymeleaf, soit nous utilisons les pages .jsp.
+Pour utiliser les deux .... on verra ça plus tard, mais n'est pas recommandé .
+
+
+**JOUER AVEC LES setOrder du fichier de configuration POUR PASSER DU MODE JSP AU MODE THYMELEAF**
+
+Pour tester thymeleaf appeler l'url : http://localhost:8080/SpringMVCConference/thyme
 
 
 ## Remarques sur la création de l'application
@@ -188,9 +235,21 @@ Ajout d'une librairie Spring sur la page jsp Registration , pour nous permettre 
 	<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 
-Le pattern View est configuré a l'aide de View Resolver ou bien à travers des Static Reources configuré à l'aide de l'implementation WebMvcConfigurer.
+**Le pattern View (MVC)** est configuré a l'aide de View Resolver ou bien à travers des Static Reources configuré à l'aide de l'implementation WebMvcConfigurer.
 
 L'étude de l'aspect View a été pratiqué pour mettre en place I18 et les Interceptors sur les traductions.
+
+
+**setOrder des differents viewResolver**
+
+Doivent spécifier l'ordre dans lequel ce résolveur de vue sera interrogé.
+
+Les applications Web Spring peuvent avoir plusieurs résolveurs (**InternalResourceViewResolver ou ViewResolver**) de vues configurés, et cette propriété d'ordre a établi l'ordre dans lequel ils seront interrogés pour la résolution des vues.
+
+
+**@NotEmpty**
+
+Permet sur un attribut à l'obligé d'etre non null (pour un string), c'est un  type de validation
 
 
 ### Bug fixes 
@@ -206,7 +265,7 @@ Votre server TOMCAT est maintenant operationnel à l'adresse URl: localhost:8080
 
 #### ResourcesBundle
 
-**ATTENTION à la signature (orthographe) du bean localeResolver()**
+**ATTENTION à la signature (orthographe) du bean localeResolver()**, ne pas oublier les "e"
 
 	@Bean
 		public LocaleResolver localeResolver() {

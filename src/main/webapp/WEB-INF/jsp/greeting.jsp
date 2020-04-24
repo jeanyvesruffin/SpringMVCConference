@@ -5,9 +5,9 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title><spring:message code="greeting"></spring:message></title>
+<title><spring:message code="greeting"/></title>
 </head>
 <body>
-	<h1><spring:message code="greeting"></spring:message>${message}</h1>
+	<h1><spring:message code="greeting"/>${message}</h1>
 </body>
 </html>
