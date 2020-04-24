@@ -227,6 +227,80 @@ Pour utiliser les deux .... on verra ça plus tard, mais n'est pas recommandé .
 
 Pour tester thymeleaf appeler l'url : http://localhost:8080/SpringMVCConference/thyme
 
+## Utilisation de javascript côté client dans les applications Spring MVC
+
+**RestController**
+
+Utiliser @RestController,  pour les methode GET @GetMapping ,@RequestParam (voir class UserController / User) et pour les methodes POST @PostMapping ,@RequestParam
+
+Tester cela à l'aide de l'url
+
+	http://localhost:8080/SpringMVCConference/user
+	
+Return
+
+	{
+	"firstname": "Jean-Yves",
+	"lastname": "Ruffin",
+	"age": 39
+	}
+
+
+Puis, tester en passant les parametres dans l'url
+	
+	
+	http://localhost:8080/SpringMVCConference/user?firstname=Dan&lastname=Franson&age=45
+
+
+Return
+
+	{
+	"firstname": "Dan",
+	"lastname": "Franson",
+	"age": 45
+	}
+
+**JQuery Integration**
+
+
+Exemple avec user.html et user.js
+
+user.js
+
+	$(document).ready(()=>{
+		$.ajax({
+			url: "http://localhost:8080/SpringMVCConference/user"
+		}).then((data)=>{
+			$('.firstname').append(data.firstname);
+			$('.lastname').append(data.lastname);
+			$('.age').append(data.age);
+		});
+	});
+	
+	
+user.html
+
+	<!DOCTYPE html>
+	<html>
+	<head>
+	<meta charset="ISO-8859-1">
+	<title>Hello JQuery</title>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="user.js"></script>
+	</head>
+	<body>
+		<div>
+			<p class="firstname">The first name is :</p>
+			<p class="lastname">The last name is :</p>
+			<p class="age">The age is :</p>
+		</div>
+	</body>
+	</html>
+
+
+Grâce au Usercontroller les datas sont envoyé au fichier user.js
+
 
 ## Remarques sur la création de l'application
 
