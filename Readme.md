@@ -135,7 +135,7 @@ Les controller utilisent les annotations springs suivants:
 
 **@Controller, @GetMapping, @ModelAttribute, @PostMapping**
 
-*Le controlleur interprete et transforme les interactions de l'utilisateur pour les transmettres au model*
+*Le controlleur interprete et transforme les interactions de l'utilisateur pour utiliser les models*
 
 *Le controlleur accède à la logique métier*
 
@@ -149,7 +149,10 @@ Les models sont de simple POJO et sont utilisés dans les controllers à l'aide 
 
 **@ModelAttribute**
 
+## SPRING PRG Pattern Post-Redirect-Get
 
+C'est une technique permettant lors d'un post de faire une redirection de type get automatiquement.
+Dans notre exemple cela a pour effet de clear le formulaire lors d'un post
 
 ## Traduction (internalization)
 
@@ -180,7 +183,7 @@ Ou bien dans un tag, par exemple input, dans ce cas nous passerons par une varia
 
 ## Remarques sur la création de l'application
 
-1 . Ajout d'une librairie Spring sur la page jsp Registration , pour nous permettre la mise een oeuvre d'un formulaire ==>> voir le tag de début de fichier registration.jsp
+Ajout d'une librairie Spring sur la page jsp Registration , pour nous permettre la mise een oeuvre d'un formulaire ==>> voir le tag de début de fichier registration.jsp
 	
 	<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
@@ -188,9 +191,6 @@ Ou bien dans un tag, par exemple input, dans ce cas nous passerons par une varia
 Le pattern View est configuré a l'aide de View Resolver ou bien à travers des Static Reources configuré à l'aide de l'implementation WebMvcConfigurer.
 
 L'étude de l'aspect View a été pratiqué pour mettre en place I18 et les Interceptors sur les traductions.
-
-
-	
 
 
 ### Bug fixes 

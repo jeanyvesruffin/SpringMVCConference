@@ -12,9 +12,13 @@ import com.ruffin.SpringMVCConference.model.RegistrationModel;
 @Controller
 public class RegistrationController {
 	
-	
-	// signature methode Version 1 avant passage pârametre @ModelAttribute
+	// Version 1
+	// signature methode avant passage parametre @ModelAttribute
 	// public String getRegistration(Map<String, Object> model)
+	
+	// Version 2
+	// Pattern MVC
+	/*
 	@GetMapping("registration")
 	public String getRegistration(@ModelAttribute ("registrationModel") RegistrationModel registrationModel) {
 		return "registration";
@@ -25,6 +29,24 @@ public class RegistrationController {
 	public String addRegistration(@ModelAttribute ("registrationModel") RegistrationModel registrationModel) {
 		System.out.println("Registration "+ registrationModel.getName());
 		return "registration";
+	}
+	*/
+	
+	// Version 3
+	// Pattern PRG ==> POST REDIRECT GET
+	// Ce pattern permet la redirection Get apres un post
+	// cela a pour effet lors d'un post, ajout d'un user, de vider le formulaire, a l'aide de redirection
+	
+	@GetMapping("registration")
+	public String getRegistration(@ModelAttribute ("registrationModel") RegistrationModel registrationModel) {
+		return "registration";
+	}
+	
+	
+	@PostMapping("registration")
+	public String addRegistration(@ModelAttribute ("registrationModel") RegistrationModel registrationModel) {
+		System.out.println("Registration "+ registrationModel.getName());
+		return "redirect:registration";
 	}
 	
 
