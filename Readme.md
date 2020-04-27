@@ -1,4 +1,4 @@
-# SPRING MVC
+# SPRING MVC RESTFUL TYMELEAF JSP
 
 Remise à niveau Spring
 
