@@ -6,6 +6,12 @@ Remise à niveau Spring
 
 Cloner le projet dans Eclipse pour executer et voir les différents TP réalisés
 
+Monter le projet et demarrer votre serveur.
+
+Accessible à l'adresse : http://localhost:8080/SpringMVCConference/
+
+
+
 ### Conditions préalables
 
 Sous Windows:
